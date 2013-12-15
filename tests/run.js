@@ -101,7 +101,7 @@ function initRunner() {
 
     // test suites completion listener
     casper.test.on('tests.complete', function() {
-        this.renderResults(this.options.autoExit, undefined, casper.cli.get('xunit') || undefined);
+        this.renderResults(this.options.autoExit, undefined, casper.cli.get('format') || undefined, casper.cli.get('file') || undefined);
         if (this.options.failFast && this.testResults.failures.length > 0) {
             casper.warn('Test suite failed fast, all tests may not have been executed.');
         }

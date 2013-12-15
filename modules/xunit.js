@@ -94,7 +94,7 @@ exports.XUnitExporter = XUnitExporter;
  *
  * @return HTMLElement
  */
-XUnitExporter.prototype.getXML = function getXML() {
+XUnitExporter.prototype.render = function render() {
     "use strict";
     if (!(this.results instanceof TestSuiteResult)) {
         throw new CasperError('Results not set, cannot get XML.');
