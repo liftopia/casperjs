@@ -76,7 +76,7 @@ HTMLExporter.prototype.render = function render() {
     }
 
     /* start of generating statistics */
-    var statusClass = this.results.countFailed() == 0 ? 'passed' : 'failed';
+    var statusClass = this.results.countFailed() === 0 ? 'passed' : 'failed';
     var cssClass = 'summary '+ statusClass;
     var summaryNode = utils.node('div', {
         class: cssClass
@@ -103,8 +103,9 @@ HTMLExporter.prototype.render = function render() {
 
         var scenarioNode = utils.node('div', {});
 
+        var failures = parseInt(result.failed, 10);
         var suiteNode = utils.node('ol', {
-            class: parseInt(result.failed) == 0 ? 'passed' : 'failed'
+            class: failures === 0 ? 'passed' : 'failed'
         }, result.name );
 
         // succesful test cases
@@ -142,7 +143,7 @@ HTMLExporter.prototype.render = function render() {
         if (result.warnings.length > 0) {
             var warningNode = utils.node('li');
             warningNode.appendChild(document.createTextNode(result.warnings.join('\n')));
-            suiteNode.appendChild(warningNode);   
+            suiteNode.appendChild(warningNode);
         }
         
         scenarioNode.appendChild(suiteNode);

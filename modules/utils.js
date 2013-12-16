@@ -732,7 +732,7 @@ function node(name, attributes, text) {
     }
     if(text) {
         var textNode = document.createTextNode(text);
-        _node.appendChild(t);
+        _node.appendChild(textNode);
     }
 
     return _node;
