@@ -82,10 +82,6 @@ function XUnitExporter() {
     "use strict";
     this.results = undefined;
     this._xml = utils.node('testsuites');
-    this._xml.toString = function toString() {
-        var serializer = new XMLSerializer();
-        return '<?xml version="1.0" encoding="UTF-8"?>' + serializer.serializeToString(this);
-    };
 }
 exports.XUnitExporter = XUnitExporter;
 
@@ -94,7 +90,7 @@ exports.XUnitExporter = XUnitExporter;
  *
  * @return HTMLElement
  */
-XUnitExporter.prototype.render = function render() {
+XUnitExporter.prototype.getXML = function getXML() {
     "use strict";
     if (!(this.results instanceof TestSuiteResult)) {
         throw new CasperError('Results not set, cannot get XML.');
@@ -156,6 +152,17 @@ XUnitExporter.prototype.render = function render() {
     this._xml.setAttribute('time', utils.ms2seconds(this.results.calculateDuration()));
     return this._xml;
 };
+
+/**
+ * Retrieves generated Xunit XML
+ *
+ * @return string
+ */
+XUnitExporter.prototype.render = function render(xml) {
+    "use strict";
+    var serializer = new XMLSerializer();
+    return '<?xml version="1.0" encoding="UTF-8"?>' + serializer.serializeToString(this.getXML());
+}
 
 /**
  * Sets test results.
