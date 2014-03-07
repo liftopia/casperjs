@@ -16,7 +16,7 @@ high-level functions, methods & syntaxic sugar for doing common tasks."
   s.files               = Dir["LICENSE.md", "README.md", "CHANGELOG.md", "package.json", "casperjs.gemspec",
                             "bin/bootstrap.js", "bin/usage.txt", "bin/casperjs_python",
                             "docs/**/*", "modules/**/*", "samples/**/*", "tests/**/*"]
-  s.bindir              = "rubybin"
+  s.bindir              = "bin"
   s.executables         = [ "casperjs" ]
   s.license             = "MIT"
   s.requirements        = [ "PhantomJS v1.7" ]
